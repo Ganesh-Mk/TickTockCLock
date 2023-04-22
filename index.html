@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="clockIcon.png">
+    <title>Tick-Tock Timer</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    caret-color: transparent;
+    user-select: none;
+    background: linear-gradient(105deg, #f4f3f4, #ff6cff);
+}
+.container{
+    background: white;
+    max-width: 90%;
+    height: 33rem;
+    border-radius: 3rem;
+    box-shadow: 3px 2px 10px -3px;  
+    padding: 3rem;  
+    font-size: 5rem;
+    position: relative;
+    line-height: 1.4;
+    overflow: hidden;
+}
+span{
+    margin: 0 1.6rem;
+    font-family: 'Tilt Warp', cursive;
+    letter-spacing: 1.5rem;
+    font-size: 7rem;
+}
+
+.tock span:nth-child(1){
+    margin-left: 5.8rem;
+}
+.line{
+    position: absolute;
+    width: 1.2rem;
+    height: 17rem;
+    background: yellow;
+    top: -4px;
+    left: 10rem;
+    animation: swing 2s ease-in-out infinite;
+    transform-origin: top;
+    box-shadow: 2px 2px 7px -4px black;
+}
+.line::before{
+    left: -1.6rem;
+    top: 16.5rem;
+    content: "";
+    position: absolute;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 10rem;
+    border: 1.2rem solid yellow;
+    box-shadow: 2px 2px 7px -4px black;
+}
+@keyframes swing {
+    0%{
+        transform: rotate(15deg);
+    }
+    50%{
+        transform: rotate(-15deg);
+    }
+    100%{
+        transform: rotate(15deg);
+    }
+}
+
+.time{
+    margin-top: 2rem;
+    height: 6rem;
+    display: grid;
+    place-items: center;
+    background: rgb(255, 188, 255);
+    border-radius: 1rem;
+    box-shadow: 1px 2px 7px -4px black;
+
+}
+.timer{
+    font-family: system-ui;
+    letter-spacing: .3rem;
+}
+
+@media (max-width: 420px) {
+    html{
+        font-size: 55%;
+    }
+}
+@media (max-width: 350px) {
+    html{
+        font-size: 50%;
+    }
+}
+@media (max-width: 310px) {
+    html{
+        font-size: 40%;
+    }
+}
+@media (max-width: 250px) {
+    html{
+        font-size: 30%;
+    }
+}
+@media (max-width: 186px) {
+    html{
+        font-size: 20%;
+    }
+}
+</style>
+<body>
+    <div class="container">
+        <div class="tick">
+            <span>T</span>
+            <span>CK</span>
+        </div>
+        <div class="line"></div>
+        <div class="tock">
+            <span>T</span>
+            <span>CK</span>
+        </div>
+        <div class="time">
+            <h5 class="timer">00:00:00</h5>
+        </div>
+    </div>
+</body>
+<script>
+    setInterval(()=>{
+        let d = new Date();
+        let hour = d.getHours()
+        let hour12 = hour % 12 || 12; 
+        let minutes = d.getMinutes()
+        let seconds = d.getSeconds()
+        let time = document.querySelector('.timer');
+        time.innerHTML = `${hour12}:${minutes}:${seconds}`
+    },1000); 
+</script>
+</html>
